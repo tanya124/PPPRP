@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: direct-ipify-through-egress-gateway
+spec:
+  hosts:
+  - api.ipify.org
+  gateways:
+  - mesh
+  - istio-egressgateway
+  http:
+  - match:
+    - gateways:
+      - mesh
+      port: 80
+    route:
+    - destination:
+        host: istio-egressgateway.istio-system.svc.cluster.local
+        subset: ipify
+        port:
+          number: 80
+      weight: 100
+  - match:
+    - gateways:
+      - istio-egressgateway
+      port: 80
+    route:
+    - destination:
+        host: api.ipify.org
+        subset: ipify
+        port:
+          number: 80
+      weight: 100
