@@ -31,3 +31,17 @@ spec:
         port:
           number: 80
       weight: 100
+
+---
+
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: egressgateway-for-ipify
+spec:
+  host: istio-egressgateway.istio-system.svc.cluster.local
+  subsets:
+  - name: ipify
+    trafficPolicy:
+      loadBalancer:
+        simple: ROUND_ROBIN

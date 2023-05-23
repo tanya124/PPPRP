@@ -4,7 +4,7 @@ metadata:
   name: app-virtualservice
 spec:
   hosts:
-  - qwerty.com
+  - myapp.qwerty.com
   gateways:
   - my-gateway
   http:
@@ -13,4 +13,6 @@ spec:
         exact: /myapp
     route:
     - destination:
+        port:
+          number: 8080
         host: app-service
