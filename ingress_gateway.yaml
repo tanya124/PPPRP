@@ -14,4 +14,4 @@ spec:
       mode: MUTUAL
       credentialName: my-credential
     hosts:
-    - "*"
+    - qwerty.com

@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: my-app
-        image: <image_repository>:<tag>
+        image: tanya124/hello-world:latest
         ports:
         - containerPort: 8080
 
